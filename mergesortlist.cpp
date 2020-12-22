@@ -32,7 +32,23 @@ void pushhead(const char*nik,box**readaddress)//digunakan untukpengambilan alama
     } 
 
 }
+void printlist(box*readaddres)
+{
+    while(readaddres)
+    {
+        if(readaddres->next==NULL)
+        {
+            printf("%s\n",readaddres->nik);
+        }
 
+        else
+        {
+            printf("%s -> ",readaddres->nik);
+        
+        }
+        readaddres = readaddres->next;
+    }
+}
 box*merge(box*cal1,box*cal2) // pakai node/box in this case karena perlu return hasil berupa list nya
 {
     box*newest=NULL;
@@ -58,29 +74,13 @@ box*merge(box*cal1,box*cal2) // pakai node/box in this case karena perlu return 
     return newest;
 }
 
-void printlist(box*readaddres)
-{
-    while(readaddres)
-    {
-        if(readaddres->next==NULL)
-        {
-            printf("%s\n",readaddres->nik);
-        }
-
-        else
-        {
-            printf("%s -> ",readaddres->nik);
-        }
-    }
-}
-
 int main ()
 {
     int a;
     scanf("%d",&a);
     box*ca1=NULL;
     box*ca2=NULL;
-    
+    box*newest = NULL;
     for(int y = 0;y<a;y++)
     {
         char n[290];
@@ -94,5 +94,6 @@ int main ()
         scanf("%s",ol);
         pushhead(ol,&ca2);
     }   
+    printlist(newest);
     return 0;
 }
